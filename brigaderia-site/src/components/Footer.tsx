@@ -80,7 +80,7 @@ export default function Footer({ navigate }: Props) {
 
       <div className="border-t border-beige/10 px-6 py-6 max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-2 text-xs text-beige/50">
         <p>© {new Date().getFullYear()} Espresso Brigaderier. Todos os direitos reservados.</p>
-        <p>Feito com ♥ e muito chocolate</p>
+        <p>Protótipo desenvolvido por Isabela Rangel</p>
       </div>
     </footer>
   )

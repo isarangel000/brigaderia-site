@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import PrototypeBanner from './components/PrototypeBanner'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
@@ -19,6 +20,7 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col bg-cream">
+      <PrototypeBanner />
       <Navbar current={page} navigate={navigate} />
       <main className="flex-1">
         {page === 'home' && <Home navigate={navigate} />}
