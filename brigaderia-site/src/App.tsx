@@ -1,27 +1,33 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { useState } from 'react'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 import Home from './pages/Home'
-import Sobre from './pages/Sobre'
 import Cardapio from './pages/Cardapio'
 import Encomendas from './pages/Encomendas'
+import Sobre from './pages/Sobre'
 import Contato from './pages/Contato'
-import './App.css'
 
-function App() {
+export type Page = 'home' | 'cardapio' | 'encomendas' | 'sobre' | 'contato'
+
+export default function App() {
+  const [page, setPage] = useState<Page>('home')
+
+  const navigate = (p: Page) => {
+    setPage(p)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   return (
-    <BrowserRouter>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/sobre" element={<Sobre />} />
-        <Route path="/cardapio" element={<Cardapio />} />
-        <Route path="/encomendas" element={<Encomendas />} />
-        <Route path="/contato" element={<Contato />} />
-      </Routes>
-      <Footer />
-    </BrowserRouter>
+    <div className="min-h-screen flex flex-col bg-cream">
+      <Navbar current={page} navigate={navigate} />
+      <main className="flex-1">
+        {page === 'home' && <Home navigate={navigate} />}
+        {page === 'cardapio' && <Cardapio />}
+        {page === 'encomendas' && <Encomendas />}
+        {page === 'sobre' && <Sobre />}
+        {page === 'contato' && <Contato />}
+      </main>
+      <Footer navigate={navigate} />
+    </div>
   )
 }
-
-export default App
